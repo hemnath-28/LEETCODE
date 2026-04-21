@@ -17,7 +17,7 @@ class Solution(object):
             r+=1
             maxsum=max(float(maxsum),float(fsum/k))
         
-        return float(maxsum)
+        return float(maxsum)/k
 lc=Solution()
 nums = [1,12,-5,-6,50,3]
 k = 4
