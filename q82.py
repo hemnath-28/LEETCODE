@@ -21,4 +21,23 @@ class Solution(object):
                 flag=False
             curr=curr.next
         return head
-                    
+    
+    
+            dummy=ListNode(0,head)
+            ret=dummy
+
+            while head:
+                if head.next and head.val==head.next.val:
+                    while head.next and head.next.val==head.val:
+                        head=head.next
+
+                    dummy.next=head.next
+                else:
+                    dummy=dummy.next
+                
+                head=head.next
+            return ret.next
+
+
+                        
+`
