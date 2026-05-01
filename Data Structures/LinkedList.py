@@ -4,7 +4,7 @@ class Node:
         self.next=None
 
 class ll:
-    def __init__(self):
+    def __init__(self,val):
         self.head=None
     
     def insertlast(self,val):
@@ -80,6 +80,8 @@ class ll:
                 return
             curr=curr.next
         print(val, "Not Found")
+    def gethead(self):
+        return self.head
     
     def reverselinked(self):
         stack=[]
@@ -96,6 +98,50 @@ class ll:
             prev=node
         prev.next=None
         self.head=newhead
+    
+    
+
+
+    def reverseBetween(self, head, left, right):
+        """
+        :type head: Optional[ListNode]
+        :type left: int
+        :type right: int
+        :rtype: Optional[ListNode]
+        """
+        
+        curr=head
+        dummy=curr
+        count=0
+        demo=None
+        while curr:
+            count+=1
+            if count==left-1:
+                demo=curr
+            
+            if count==left:
+                temp=curr
+                prev=None
+                front=None
+                start=temp
+                while count<=right:
+                    front=temp.next
+                    temp.next=prev
+                    prev=temp
+                    temp=front
+                    count+=1
+                demo.next=prev
+                start.next=front
+                curr=start
+ 
+            curr=curr.next
+            
+        return dummy
+    
+            
+               
+            
+            
         
         
         
@@ -109,18 +155,18 @@ class ll:
     
         
         
-l = ll()
+l = ll(1)
 
 # 🔹 insert values
 
-l.insertlast(10)
-l.insertlast(20)
-l.insertlast(30)
-l.insertlast(40)
-l.insertfirst(0)
-l.insertMiddle(25)
-l.reverselinked()
+l.insertlast(1)
+l.insertlast(2)
+l.insertlast(3)
+l.insertlast(4)
+l.insertlast(5)
 
+head=l.gethead()
+l.reverseBetween(head,2,4)
 
 # 🔹 print list
 l.display()
