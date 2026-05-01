@@ -6,22 +6,24 @@ class Solution(object):
         """
         stack=[]
         n=len(s)
+        output=[]
+        cnt=0
         for i in range(n):
             if s[i]=="(":
-                stack.append((s[i],i))
-            elif s[i]==")":
-                if stack and stack[-1][0]=="(":
-                    stack.pop()
-                else:
-                    stack.append((s[i],i))
-        hset=set()
-        for k in range(len(stack)):
-            hset.add(stack[k][1])
-        output=""
-        for i in range(n):
-            if i not in hset:
-                output+=s[i]
-        print(output)
+                stack.append(s[i])
+                cnt+=1
+            elif s[i]==")" and cnt>0:
+                stack.append(s[i])
+                cnt-=1
+            elif s[i]!=")":
+                stack.append(s[i])
+        for i in stack[::-1]:
+            if i==")" and cnt>0:
+                cnt-=1
+            else:
+                output.append(i)
+        return "".join(output[::-1])
+        
         
 lc=Solution()
 s="a)b(c)d"
